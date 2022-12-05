@@ -1,21 +1,12 @@
 version: '3'
 
 services:
-  # node:
-  #   image: 16.14
-  #   container_name: node_donut
-  #   restart: on-failure
-  #   tty: true
-  #   stdin_open: true
-  #   command: bash
   db:
     container_name: donutdb
-    image: mysql:8.0.23
+    image: mysql:8.0.23 
     restart: on-failure
-    # env_file:
-    #   - ./.env
     environment:
-      # MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_USER: ${MYSQL_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - 3305:3306
