@@ -12,7 +12,7 @@ module.exports = {
       },
       sender_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: yes,
         references: {
           model: 'users',
           key: 'user_id',
@@ -40,7 +40,7 @@ module.exports = {
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
-        DEFAULT: Sequelize.literal('CURRENT_TIMESTAMP'),
+        DEFAULT: Sequelize.fn('NOW'),
       },
     });
   },
