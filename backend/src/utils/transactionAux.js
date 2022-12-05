@@ -1,5 +1,7 @@
+const { User } = require('../models');
+
 const senderHaveBalance = async (senderId, amount) => {
-  const sender = await Users.findOne({ where: { id: senderId } });
+  const sender = await User.findOne({ where: { user_id: senderId } });
   const senderBalance = sender.balance;
   if (senderBalance < amount) return false;
   return true;
@@ -11,20 +13,22 @@ const transactionLimit = async (amount) => {
 };
 
 const receiverExists = async (receiverId) => {
-  const receiver = await Users.findOne({ where: { id: receiverId } });
+  const receiver = await User.findOne({ where: { user_id: receiverId } });
   if (!receiver) return false;
   return true;
 };
 
 const updateBalance = async (senderId, receiverId, amount) => {
-  const sender = await Users.findOne({ where: { id: senderId } });
-  const receiver = await Users.findOne({ where: { id: receiverId } });
-  const senderBalance = sender.balance;
-  const receiverBalance = receiver.balance;
-  const newSenderBalance = senderBalance - amount;
-  const newReceiverBalance = receiverBalance + amount;
-  await Users.update({ balance: newSenderBalance }, { where: { id: senderId } });
-  await Users.update({ balance: newReceiverBalance }, { where: { id: receiverId } });
+  const sender = await User.findOne({ where: { user_id: senderId } });
+  let balance = Number(sender.balance);
+  const newSenderBalance = balance - amount;
+
+  const receiver = await User.findOne({ where: { user_id: receiverId } });
+  balance = Number(receiver.balance);
+  const newReceiverBalance = balance + amount;
+
+  await User.update({ balance: newSenderBalance }, { where: { user_id: senderId } });
+  await User.update({ balance: newReceiverBalance }, { where: { user_id: receiverId } });
 };
 
 module.exports = {

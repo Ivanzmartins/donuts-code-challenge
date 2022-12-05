@@ -21,10 +21,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       balance: {
         type: Sequelize.DECIMAL(10, 2),
         allowNegative: false,

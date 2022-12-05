@@ -24,10 +24,10 @@ const createTransaction = async (senderId, receiverId, amount) => {
     const validReceiver = await receiverExists(receiverId);
     if (!validReceiver) return { status: 400, message: 'Receiver does not exist' };
 
-    const transaction = await Transactions.create({ senderId, receiverId, amount });
     await updateBalance(senderId, receiverId, amount);
+    const transaction = await Transactions.create({ sender_id: senderId, receiver_id: receiverId, amount });
 
-    return { status: 200, transaction };
+    return { status: 201, transaction };
   } catch (error) {
     return { status: 500, message: error.message };
   }
