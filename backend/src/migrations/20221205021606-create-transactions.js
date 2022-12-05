@@ -12,7 +12,7 @@ module.exports = {
       },
       sender_id: {
         type: Sequelize.INTEGER,
-        allowNull: yes,
+        allowNull: true,
         references: {
           model: 'users',
           key: 'user_id',

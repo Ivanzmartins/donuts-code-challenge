@@ -4,7 +4,7 @@ const Transactions = (sequelize, DataTypes) => {
     sender_id: {
       type: DataTypes.INTEGER,
       foreignKey: true,
-      allowNull: yes,
+      allowNull: true,
     },
     receiver_id: {
       type: DataTypes.INTEGER,
