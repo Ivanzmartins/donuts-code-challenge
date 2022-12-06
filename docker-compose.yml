@@ -5,8 +5,10 @@ services:
     container_name: donutdb
     image: mysql:8.0.23 
     restart: on-failure
+    env_file:
+      - ./backend/.env
     environment:
       MYSQL_ROOT_USER: ${MYSQL_USER}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - 3305:3306
+      - MYSQL_PORT:3306

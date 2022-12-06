@@ -20,7 +20,7 @@ app.use('/signup', signUpRoutes);
 
 
 
-app.get('/teste', async(_req, res) => {
+app.get('/', async(_req, res) => {
   const users = await User.findAll();
   res.status(200).json({ users });
 });
