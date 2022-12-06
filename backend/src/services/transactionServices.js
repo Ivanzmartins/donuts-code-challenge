@@ -14,6 +14,7 @@ const newDeposit = async (userId, amount) => {
 };
 
 const createTransaction = async (senderId, receiverId, amount) => {
+  if (senderId === receiverId) return { status: 400, message: 'Cannot transfer to yourself' };
   try {
     const senderBalance = await senderHaveBalance(senderId, amount);
     if (!senderBalance) return { status: 400, message: 'Insufficient funds' };

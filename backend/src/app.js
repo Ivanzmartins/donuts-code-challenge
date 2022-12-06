@@ -4,6 +4,8 @@ const loginRoutes = require('./routes/loginRouter');
 
 const transactionRoutes = require('./routes/transactionsRouter');
 
+const signUpRoutes = require('./routes/signUpRouter');
+
 const { User } = require('./models');
 
 const app = express();
@@ -13,6 +15,8 @@ app.use(express.json());
 app.use('/login', loginRoutes);
 
 app.use('/user', transactionRoutes);
+
+app.use('/signup', signUpRoutes);
 
 
 
