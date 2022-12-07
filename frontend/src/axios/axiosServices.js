@@ -11,9 +11,9 @@ export const register = async (name, cpf, password, deposit) => {
 };
 
 export const loginAxios = async (cpf, password) => {
-  const response = await Axios.post('http://localhost:3001/login', {
+  const { data } = await Axios.post('http://localhost:3001/login', {
     cpf,
     password,
   });
-  return response.data;
+  return data;
 };

@@ -4,15 +4,11 @@ import { register } from '../axios/axiosServices';
 import Header from '../components/header';
 
 function NewUser() {
-  // const [nameReg, setNameReg] = useState('');
-  // const [cpfReg, setCpfReg] = useState('');
-  // const [passwordReg, setPasswordReg] = useState('');
-  // const [depositReg, setDepositReg] = useState('');
-
   const initialState = {
     cpf: '', password: '', name: '', deposit: 0,
   };
   const [values, setValues] = useState(initialState);
+
   const onChange = (event) => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
