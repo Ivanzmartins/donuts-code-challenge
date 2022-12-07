@@ -12,8 +12,8 @@ function Login() {
   const [userToken, setUserToken] = useState('');
 
   const teste = useContext(UserContext);
-  const imprimeTeste = () => {
-    teste.updateUser({ id, userToken });
+  const imprimeContext = async () => {
+    await teste.updateUser({ id, userToken });
     console.log(teste.user); // eslint-disable-line no-console
   };
 
@@ -32,7 +32,7 @@ function Login() {
     const { token, userId } = await loginAxios(cpf, password);
     setId(userId);
     setUserToken(token);
-    console.log(id, userToken); // eslint-disable-line no-console
+    imprimeContext();
   };
 
   return (
@@ -60,12 +60,12 @@ function Login() {
           Logar
         </button>
       </form>
-      <button
+      {/* <button
         type="button"
-        onClick={imprimeTeste}
+        onClick={imprimeContext}
       >
         Imprime UserContext
-      </button>
+      </button> */}
       <button
         type="button"
         onClick={goToUserPage}

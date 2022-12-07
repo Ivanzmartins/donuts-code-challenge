@@ -17,3 +17,5 @@ export const loginAxios = async (cpf, password) => {
   });
   return data;
 };
+
+// export const userData = async (token) => {};
