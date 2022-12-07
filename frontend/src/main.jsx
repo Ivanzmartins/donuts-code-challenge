@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import NewUser from './pages/newUser';
 import Deposit from './pages/deposit';
 import Login from './pages/login';
-// import UserPage from './pages/userPage';
 
 const router = createBrowserRouter([
   {

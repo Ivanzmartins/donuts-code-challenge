@@ -5,8 +5,8 @@ function Home() {
   return (
     <div>
       <h1>Home</h1>
-      <Link to="/newUser">New User</Link>
-      <Link to="/deposit">Deposit</Link>
+      <Link to="/newUser">Registrar</Link>
+      <Link to="/deposit">Depositar</Link>
       <Link to="/login">Login</Link>
     </div>
   );
