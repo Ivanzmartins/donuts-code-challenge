@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/header';
 import { loginAxios } from '../axios/axiosServices';
+import UserContext from '../context/UserContext';
 
 const initialState = { cpf: '', password: '' };
 
 function Login() {
   const [values, setValues] = useState(initialState);
+  const [id, setId] = useState(0);
+  const [userToken, setUserToken] = useState('');
+
+  const teste = useContext(UserContext);
+  const imprimeTeste = () => {
+    teste.updateUser({ id, userToken });
+    console.log(teste.user); // eslint-disable-line no-console
+  };
+
+  const navigate = useNavigate();
+
+  const goToUserPage = () => {
+    navigate(`/user/${id}`);
+  };
 
   const onChange = (event) => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
-    console.log(values); // eslint-disable-line
   };
 
   const loginUser = async (cpf, password) => {
     const { token, userId } = await loginAxios(cpf, password);
-    console.log(token, userId); // eslint-disable-line
-    return { token, userId };
+    setId(userId);
+    setUserToken(token);
+    console.log(id, userToken); // eslint-disable-line no-console
   };
 
   return (
@@ -41,10 +57,21 @@ function Login() {
           onClick={() => loginUser(values.cpf, values.password)}
           disabled={!(values.cpf.length === 11 && values.password.length >= 6)}
         >
-          Entrar
-
+          Logar
         </button>
       </form>
+      <button
+        type="button"
+        onClick={imprimeTeste}
+      >
+        Imprime UserContext
+      </button>
+      <button
+        type="button"
+        onClick={goToUserPage}
+      >
+        Ir para página do usuário
+      </button>
     </div>
   );
 }
