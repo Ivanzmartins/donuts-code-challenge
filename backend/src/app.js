@@ -6,6 +6,8 @@ const transactionRoutes = require('./routes/transactionsRouter');
 
 const signUpRoutes = require('./routes/signUpRouter');
 
+const userRoutes = require('./routes/userRoutes');
+
 const { User } = require('./models');
 
 const cors = require('cors');
@@ -21,6 +23,9 @@ app.use('/login', loginRoutes);
 app.use('/user', transactionRoutes);
 
 app.use('/signup', signUpRoutes);
+
+app.use('/user', userRoutes);
+
 
 
 
