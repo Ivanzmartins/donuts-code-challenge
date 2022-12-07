@@ -1,4 +1,4 @@
-const { validateToken } = require('../auth/jwtFunctions');
+const { validateToken, returnTokenOwner } = require('../auth/jwtFunctions');
 
 const tokenExistAndValid = (req, res, next) => {
   const token = req.headers.authorization;
@@ -10,4 +10,15 @@ const tokenExistAndValid = (req, res, next) => {
   return next();
 };
 
-module.exports = { tokenExistAndValid };
+const verifyTokenUser = (req, res, next) => {
+  const token = req.headers.authorization;
+  const id  = Number(req.params.id);
+  const ownerTokenId = returnTokenOwner(token);
+  console.log(id, ownerTokenId);
+  id === ownerTokenId ? next() : res.status(401).json({ message: 'Unauthorized' });
+}
+
+module.exports = {
+  tokenExistAndValid,
+  verifyTokenUser
+};

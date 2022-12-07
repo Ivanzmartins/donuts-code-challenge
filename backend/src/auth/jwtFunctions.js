@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const secret = process.env.JWT_SECRET || 'secret';
+const secret = process.env.JWT_SECRET;
 
 const jwtConfig = {
   expiresIn: '7d',
@@ -14,14 +14,21 @@ const createToken = (userWithoutPassword) => {
 
 const validateToken = (authorization) => {
   try {
-  const payload = jwt.verify(authorization, secret);
-  return payload;
+    const payload = jwt.verify(authorization, secret);
+    return payload;
   } catch (error) {
     return { isError: error };
   }
 };
 
+const returnTokenOwner = (token) => {
+  const { data } = jwt.verify(token, secret);
+  const { user_id } = data;
+  return user_id;
+};
+
 module.exports = {
   createToken,
   validateToken,
+  returnTokenOwner,
 };
